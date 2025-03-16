@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Travail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            padding-top: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            margin: 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s linear;
+            position: relative;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #007BFF, #00c6ff);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟  Monsieur Ohman 🌟</h1>
+    <div class="container">
+        <p>Voici les informations importantes sur cette page de travail.</p>
+        
+        <div class="image-container">
+            <img src="Othman1.jpg" alt="Othman1" class="movable" id="img1">
+            <img src="Othman2.jpg" alt="Othman2" class="movable" id="img2">
+            <img src="Othman3.jpg" alt="Othman3" class="movable" id="img3">
+        </div>
+        
+        <p><em>"Dédicace spéciale à tous ceux qui travaillent dur chaque jour !"</em></p>
+        <button onclick="showMessage()">Commencer</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            let messages = [
+                "Continue à avancer, tu es sur la bonne voie !",
+                "Le travail acharné paie toujours !",
+                "Fais de ton mieux aujourd'hui !",
+                "Ne lâche rien, chaque effort compte !"
+            ];
+            let randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }
+
+        document.addEventListener("mousemove", function(event) {
+            let images = document.querySelectorAll(".movable");
+            images.forEach((img, index) => {
+                let rect = img.getBoundingClientRect();
+                let moveX = (event.clientX - rect.left) / (20 + index * 10);
+                let moveY = (event.clientY - rect.top) / (20 + index * 10);
+                img.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
